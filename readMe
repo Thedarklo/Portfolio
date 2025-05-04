@@ -1,0 +1,72 @@
+ Portfolio Website - Installation & Setup Guide
+
+This guide will help you set up and run the portfolio website application locally.
+
+## Prerequisites
+
+- Node.js (v14 or newer)
+- npm or yarn package manager
+
+## Installation
+
+1. Clone the repository to your local machine
+   ```
+   git clone <repository-url>
+   cd portfolio-website
+   ```
+
+2. Install all dependencies
+   ```
+   npm install
+   npm run dev
+   ```
+
+3. Set up EmailJS for the contact form functionality
+   - Create an account at [EmailJS](https://www.emailjs.com/)
+   - Create a service (connecting your email provider like Gmail)
+   - Create an email template
+   - Note your Service ID, Template ID, and Public Key
+   - Update the Contact.tsx file with your credentials:
+     ```typescript
+     // In src/components/Contact.tsx
+     emailjs.send(
+       'YOUR_SERVICE_ID',      // Replace with your EmailJS service ID
+       'YOUR_TEMPLATE_ID',     // Replace with your EmailJS template ID
+       {
+         from_name: formData.name,
+         reply_to: formData.email,
+         subject: formData.subject,
+         message: formData.message,
+         to_email: 'Dev88393@gmail.com'  // Recipient email address
+       },
+       'YOUR_PUBLIC_KEY'       // Replace with your EmailJS public key
+     )
+     ```
+
+## Running the Application
+
+### Development Mode
+
+To run the application in development mode with hot-reload:
+
+## Troubleshooting
+
+- If you encounter any issues with dependencies, try removing node_modules and package-lock.json, then run `npm install` again.
+- For EmailJS related issues, check the console for errors and verify your service ID, template ID, and public key.
+- If the application fails to start, ensure that port 5173 is not in use by another application.
+
+## Project Structure
+
+- `/src` - Source code for the application
+  - `/components` - React components used throughout the site
+  - `App.tsx` - Main application component
+  - `main.tsx` - Application entry point
+
+## Technology Stack
+
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- Framer Motion
+- EmailJS
